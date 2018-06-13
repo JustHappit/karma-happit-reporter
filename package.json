@@ -1,12 +1,12 @@
 {
-    "author": "Daniel Arlitt <dgarlitt@yahoo.com>",
+    "author": "Niklas Engblom <niklas@happit.com>",
     "bugs": {
-        "url": "https://github.com/dgarlitt/karma-nyan-reporter/issues"
+        "url": "https://github.com/JustHappit/karma-happit-reporter/issues"
     },
     "dependencies": {
         "cli-color": "^0.3.2"
     },
-    "description": "Karma reporter with Nyan Cat style logging.",
+    "description": "Karma reporter with Happit style logging.",
     "devDependencies": {
         "chai": "^2.3.0",
         "coveralls": "^2.11.2",
@@ -20,29 +20,29 @@
     "keywords": [
         "karma-plugin",
         "karma-reporter",
-        "nyan",
-        "cat"
+        "happit",
+        "justhappit"
     ],
-    "license": "The MIT License (MIT)",
+    "license": "MIT",
     "main": "index.js",
     "maintainers": [
         {
-            "email": "dgarlitt@yahoo.com",
-            "name": "Daniel Arlitt"
+            "email": "niklas@happit.com",
+            "name": "Niklas Engblom"
         }
     ],
-    "name": "karma-nyan-reporter",
+    "name": "karma-happit-reporter",
     "peerDependencies": {
         "karma": ">=0.9"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/dgarlitt/karma-nyan-reporter.git"
+        "url": "https://github.com/JustHappit/karma-happit-reporter.git"
     },
     "scripts": {
         "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha",
         "test": "./node_modules/mocha/bin/mocha -R spec ./test/*",
         "test-travis": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec  ./test/*"
     },
-    "version": "0.2.5"
+    "version": "0.1.0"
 }
