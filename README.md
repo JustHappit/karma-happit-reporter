@@ -1,15 +1,9 @@
-[![npm version](https://badge.fury.io/js/karma-nyan-reporter.svg)](http://badge.fury.io/js/karma-nyan-reporter)
-[![Build Status](https://travis-ci.org/dgarlitt/karma-nyan-reporter.svg)](https://travis-ci.org/dgarlitt/karma-nyan-reporter)
-[![Coverage Status](https://coveralls.io/repos/dgarlitt/karma-nyan-reporter/badge.svg?branch=master)](https://coveralls.io/r/dgarlitt/karma-nyan-reporter?branch=master)
-[![Code Climate](https://codeclimate.com/github/dgarlitt/karma-nyan-reporter/badges/gpa.svg)](https://codeclimate.com/github/dgarlitt/karma-nyan-reporter)
-<!-- [![Dependency Status](https://david-dm.org/dgarlitt/karma-nyan-reporter.svg)](https://david-dm.org/dgarlitt/karma-nyan-reporter) -->
-
-karma-nyan-reporter
+karma-happit-reporter
 ===================
 
-Nyan Cat style reporter originally cobbled together from the [Mocha](http://visionmedia.github.io/mocha/) version
+Happit style reporter for karma, forked from [karma-nyan-reporter](https://github.com/dgarlitt/karma-nyan-reporter)
 
-![Karma Nyan Cat Reporter for Karma](https://raw.githubusercontent.com/dgarlitt/image-repo/master/karma-nyan-reporter/v0.2.2/karma-nyan-reporter.gif "Karma Nyan Cat Reporter for Karma")
+// TODO: Insert animation here
 
 Installation
 ========
@@ -17,7 +11,7 @@ Installation
 Installation is simple using npm, just run the following command:
 
 ```sh
-npm install --save-dev karma-nyan-reporter
+npm install --save-dev karma-happit-reporter
 ```
 
 Since this follows Karma's plugin naming convention, that's all there is to it!
@@ -25,7 +19,7 @@ Since this follows Karma's plugin naming convention, that's all there is to it!
 Now, run your tests and enjoy:
 
 ```sh
-karma start path/to/karma.conf.js --reporters nyan
+karma start path/to/karma.conf.js --reporters happit
 ```
 
 Error and Logging Output
@@ -33,7 +27,7 @@ Error and Logging Output
 
 Here is a screenshot of the error and logging output. The errors are displayed hierarchically based on the test suite and nesting level. ```console.log()``` messages are output at the bottom (in blue) below the test summary and grouped by browser.
 
-![Karma Nyan Cat Reporter Error Output](https://raw.githubusercontent.com/dgarlitt/image-repo/master/karma-nyan-reporter/v0.2.2/karma-nyan-reporter-error-output.png "Karma Nyan Cat Reporter Error Output")
+// TODO: Insert screenshot here
 
 Options
 =========
@@ -46,10 +40,10 @@ module.exports = function(config) {
   config.set({
     // normal config stuffs
 
-    reporters: ['nyan'],
+    reporters: ['happit'],
 
     // reporter options
-    nyanReporter: {
+    happitReporter: {
       // suppress the error report at the end of the test run
       suppressErrorReport: true, // default is false
 
@@ -69,7 +63,3 @@ module.exports = function(config) {
   });
 };
 ```
-
-In this release
------------
- - Fix for [issue #23](https://github.com/dgarlitt/karma-nyan-reporter/issues/23) - Total tests count is different from other reporters
