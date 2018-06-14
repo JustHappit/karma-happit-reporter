@@ -1,12 +1,12 @@
 /*jshint -W030 */
 (function() {
   'use strict';
-  var NyanCat = require('./lib/nyanCat').NyanCat;
+  var HappitReporter = require('./lib/happit-reporter').HappitReporter;
 
-  NyanCat.$inject = ['baseReporterDecorator', 'formatError', 'config'];
+  HappitReporter.$inject = ['baseReporterDecorator', 'formatError', 'config'];
 
   module.exports = {
-    'reporter:happit': ['type', NyanCat]
+    'reporter:happit': ['type', HappitReporter]
   };
 
 })();
