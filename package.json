@@ -31,7 +31,7 @@
             "name": "Niklas Engblom"
         }
     ],
-    "name": "karma-happit-reporter",
+    "name": "@happit/karma-happit-reporter",
     "peerDependencies": {
         "karma": ">=0.9"
     },
