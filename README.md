@@ -3,7 +3,8 @@ karma-happit-reporter
 
 Happit style reporter for karma, forked from [karma-nyan-reporter](https://github.com/dgarlitt/karma-nyan-reporter)
 
-// TODO: Insert animation here
+![Karma Happit Reporter for Karma](karma-happit-reporter.jpg "Karma Happit Reporter for Karma")
+
 
 Installation
 ========
@@ -27,7 +28,7 @@ Error and Logging Output
 
 Here is a screenshot of the error and logging output. The errors are displayed hierarchically based on the test suite and nesting level. ```console.log()``` messages are output at the bottom (in blue) below the test summary and grouped by browser.
 
-// TODO: Insert screenshot here
+![Karma Happit Reporter for Karma](karma-happit-reporter-error.jpg "Karma Happit Reporter for Karma")
 
 Options
 =========
