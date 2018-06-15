@@ -1,7 +1,7 @@
 karma-happit-reporter
 ===================
 
-Happit style reporter for karma, forked from [karma-nyan-reporter](https://github.com/dgarlitt/karma-nyan-reporter)
+[Happit](https://happit.com) style reporter for karma, forked from [karma-nyan-reporter](https://github.com/dgarlitt/karma-nyan-reporter)
 
 ![Karma Happit Reporter for Karma](karma-happit-reporter.jpg "Karma Happit Reporter for Karma")
 
