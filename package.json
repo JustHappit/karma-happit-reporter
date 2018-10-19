@@ -9,9 +9,9 @@
     "description": "Karma reporter with Happit style logging.",
     "devDependencies": {
         "chai": "^2.3.0",
-        "coveralls": "^2.11.2",
-        "istanbul": "^0.3.15",
-        "mocha": "^2.2.4",
+        "coveralls": "^3.0.2",
+        "istanbul": "^0.4.5",
+        "mocha": "^5.2.0",
         "mocha-lcov-reporter": "0.0.2",
         "rewire": "^2.3.3",
         "sinon": "^1.14.1",
