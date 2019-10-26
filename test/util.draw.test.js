@@ -73,13 +73,13 @@ describe('util/draw.js test suite', function() {
     it('should set the defaults values appropriately', function() {
       var expected, actual;
 
-      eq(4, sut.numberOfLines);
-      eq(11, sut.nyanCatWidth);
+      eq(5, sut.numberOfLines);
+      eq(8, sut.happWidth);
       eq(5, sut.scoreboardWidth);
       eq(0, sut.tick);
-      assert.deepEqual([[], [], [], []], sut.trajectories);
+      assert.deepEqual([[], [], [], [], []], sut.trajectories);
 
-      expected = (shellWidth * 0.75 | 0) - sut.nyanCatWidth;
+      expected = (shellWidth * 0.75 | 0) - sut.happWidth;
       actual = sut.trajectoryWidthMax;
       eq(expected, actual);
     });
@@ -112,7 +112,7 @@ describe('util/draw.js test suite', function() {
 
       expect(rainbowifierFake.rainbowify.calledOnce).to.be.true;
       expect(rainbowifierFake.rainbowify.calledWithExactly('-')).to.be.true;
-      expect(sut.trajectories.length).to.eq(4);
+      expect(sut.trajectories.length).to.eq(5);
       expect(sut.trajectories[0].length).to.eq(1);
       expect(sut.trajectories[1].length).to.eq(1);
       expect(sut.trajectories[2].length).to.eq(1);
@@ -126,7 +126,7 @@ describe('util/draw.js test suite', function() {
       sut.appendRainbow(rainbowifierFake);
 
       expect(rainbowifierFake.rainbowify.calledWithExactly('-')).to.be.true;
-      expect(sut.trajectories.length).to.eq(4);
+      expect(sut.trajectories.length).to.eq(5);
       expect(sut.trajectories[0].length).to.eq(2);
       expect(sut.trajectories[1].length).to.eq(2);
       expect(sut.trajectories[2].length).to.eq(2);
@@ -256,10 +256,10 @@ describe('util/draw.js test suite', function() {
   });
 
   /**
-   * drawNyanCat() tests
+   * drawHapp() tests
    */
 
-  describe('drawNyanCat method tests', function() {
+  describe('drawHapp method tests', function() {
     it('should call the write and cursorUp as expected', function() {
       var write = fakeWrite;
       var face = 'face';
@@ -269,25 +269,25 @@ describe('util/draw.js test suite', function() {
       sut.face = sinon.stub();
       sut.face.withArgs(stats).returns(face);
       sut.cursorUp = sinon.spy();
-      sut.drawNyanCat(stats);
+      sut.drawHapp(stats);
 
-      expect(write.callCount).to.eq(12);
+      expect(write.callCount).to.eq(15);
       expect(sut.cursorUp.calledOnce).to.be.true;
 
       expect(write.getCall(0).args[0]).to.eq(color);
-      expect(write.getCall(1).args[0]).to.eq('_,------,');
+      expect(write.getCall(1).args[0]).to.eq('-_\u001b[38;5;45m┌─^─┐ \u001b[39m');
       expect(write.getCall(2).args[0]).to.eq('\n');
 
       expect(write.getCall(3).args[0]).to.eq(color);
-      expect(write.getCall(4).args[0]).to.eq('_|   /\\_/\\ ');
+      expect(write.getCall(4).args[0]).to.eq('\u001b[38;5;45mface\u001b[39m');
       expect(write.getCall(5).args[0]).to.eq('\n');
 
       expect(write.getCall(6).args[0]).to.eq(color);
-      expect(write.getCall(7).args[0]).to.eq('^|__' + face + ' ');
+      expect(write.getCall(7).args[0]).to.eq('\u001b[38;5;45m <╎ ᵕ ╎>~\u001b[39m');
       expect(write.getCall(8).args[0]).to.eq('\n');
 
       expect(write.getCall(9).args[0]).to.eq(color);
-      expect(write.getCall(10).args[0]).to.eq('  ""  "" ');
+      expect(write.getCall(10).args[0]).to.eq('_-\u001b[38;5;45m└─ ─┘ \u001b[39m');
       expect(write.getCall(11).args[0]).to.eq('\n');
     });
   });
@@ -299,22 +299,22 @@ describe('util/draw.js test suite', function() {
   describe('face method tests', function() {
     it('should return as exected if stats.failed is true', function() {
       var face = sut.face({failed: true});
-      expect(face).to.eq('( x .x)');
+      expect(face).to.eq('  │x x│ ');
     });
 
     it('should return as exected if stats.skipped is true', function() {
       var face = sut.face({skipped: true});
-      expect(face).to.eq('( o .o)');
+      expect(face).to.eq('  │• •│ ');
     });
 
     it('should return as exected if stats.success is true', function() {
       var face = sut.face({success: true});
-      expect(face).to.eq('( ^ .^)');
+      expect(face).to.eq('  │^ ^│ ');
     });
 
     it('should return as exected if none of the above are true', function() {
       var face = sut.face({});
-      expect(face).to.eq('( - .-)');
+      expect(face).to.eq('  │-.-│ ');
     });
   });
 
@@ -342,7 +342,7 @@ describe('util/draw.js test suite', function() {
   describe('fillWithNewlines method tests', function() {
     it('should draw a newline character the expected number of times', function() {
       sut.fillWithNewlines();
-      eq(5, fakeWrite.callCount);
+      eq(6, fakeWrite.callCount);
       for(var i = 0; i < fakeWrite.callCount; i++) {
         ok(fakeWrite.getCall(i).calledWithExactly('\n'));
       }
