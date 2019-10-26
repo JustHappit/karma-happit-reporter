@@ -36,7 +36,7 @@ describe('nyanCat.js test suite', function() {
       'appendRainbow' : sinon.spy(),
       'drawScoreboard' : sinon.spy(),
       'drawRainbow' : sinon.spy(),
-      'drawNyanCat' : sinon.spy(),
+      'drawHapp' : sinon.spy(),
       'tick' : true,
       'fillWithNewlines' : sinon.spy()
     };
@@ -101,7 +101,7 @@ describe('nyanCat.js test suite', function() {
       'options', 'adapters'
     ];
 
-    module = rewire('../lib/nyanCat');
+    module = rewire('../lib/happit-reporter');
     module.__set__('drawUtil', drawUtilFake);
     module.__set__('rainbowifier', rainbowifierFake);
     module.__set__('dataStore', dataStoreFake);
@@ -138,7 +138,7 @@ describe('nyanCat.js test suite', function() {
     it('should have expected default properties', function() {
       var msg = 'my message';
 
-      sut = new module.NyanCat(null, formatterFake, configFake);
+      sut = new module.HappitReporter(null, formatterFake, configFake);
 
       expect(sut).to.contain.keys(defaultPropertyKeys);
       expect(sut.options).to.not.be.an.object;
@@ -158,7 +158,7 @@ describe('nyanCat.js test suite', function() {
     });
 
     it('should set options when passed in via config', function() {
-      configFake.nyanReporter = {
+      configFake.happitReporter = {
         'suppressErrorReport' : true,
         'suppressErrorHighlighting' : true,
         'numberOfRainbowLines' : 100,
@@ -166,7 +166,7 @@ describe('nyanCat.js test suite', function() {
         'someOtherOption' : 1234
       };
 
-      sut = new module.NyanCat(null, formatterFake, configFake);
+      sut = new module.HappitReporter(null, formatterFake, configFake);
 
       expect(sut.options.suppressErrorReport).to.be.true;
       expect(sut.options.suppressErrorHighlighting).to.be.true;
@@ -176,11 +176,11 @@ describe('nyanCat.js test suite', function() {
     });
 
     it('should suppressErrorHighlighting if option is set in config', function() {
-      configFake.nyanReporter = {
+      configFake.happitReporter = {
         'suppressErrorHighlighting' : true
       };
 
-      sut = new module.NyanCat(null, null, configFake);
+      sut = new module.HappitReporter(null, null, configFake);
 
       expect(dataTypesFake.suppressErrorHighlighting.calledOnce).to.be.true;
     });
@@ -195,7 +195,7 @@ describe('nyanCat.js test suite', function() {
     var props;
 
     beforeEach(function(done) {
-      sut = new module.NyanCat(null, null, configFake);
+      sut = new module.HappitReporter(null, null, configFake);
 
       props = {
         '_browsers' : [],
@@ -249,9 +249,9 @@ describe('nyanCat.js test suite', function() {
     var resetSpy;
 
     beforeEach(function(done) {
-      resetSpy = sinon.spy(module.NyanCat.prototype, 'reset');
+      resetSpy = sinon.spy(module.HappitReporter.prototype, 'reset');
 
-      sut = new module.NyanCat(null, null, configFake);
+      sut = new module.HappitReporter(null, null, configFake);
 
       done();
     });
@@ -308,7 +308,7 @@ describe('nyanCat.js test suite', function() {
       log1 = 'log message 1';
       log2 = 'log message 2';
 
-      sut = new module.NyanCat(null, null, configFake);
+      sut = new module.HappitReporter(null, null, configFake);
       sut.browser_logs = {};
 
       done();
@@ -372,7 +372,7 @@ describe('nyanCat.js test suite', function() {
 
       result = {};
 
-      sut = new module.NyanCat(null, null, configFake);
+      sut = new module.HappitReporter(null, null, configFake);
       sut._browsers = [];
       sut.dataStore = dataStoreInstanceFake;
       sut.draw = sinon.spy();
@@ -424,7 +424,7 @@ describe('nyanCat.js test suite', function() {
 
   describe('onRunComplete method tests', function() {
     beforeEach(function(done) {
-      sut = new module.NyanCat(null, null, configFake);
+      sut = new module.HappitReporter(null, null, configFake);
       sut.draw = sinon.spy();
       sut.browserErrors = [];
       sut.drawUtil = drawUtilInstanceFake;
@@ -482,7 +482,7 @@ describe('nyanCat.js test suite', function() {
       var browser1 = 'browser1';
       var browser2 = 'browser2';
 
-      sut = new module.NyanCat(null, null, configFake);
+      sut = new module.HappitReporter(null, null, configFake);
       sut._browsers = [];
       sut.numberOfBrowsers = 0;
 
@@ -507,7 +507,7 @@ describe('nyanCat.js test suite', function() {
       var browser = 'browser';
       var error = 'error';
 
-      sut = new module.NyanCat(null, null, configFake);
+      sut = new module.HappitReporter(null, null, configFake);
       sut.browserErrors = [];
 
       sut.onBrowserError(browser, error);
@@ -524,7 +524,7 @@ describe('nyanCat.js test suite', function() {
     var util;
 
     beforeEach(function(done) {
-      sut = new module.NyanCat(null, null, configFake);
+      sut = new module.HappitReporter(null, null, configFake);
       util = sut.drawUtil = drawUtilInstanceFake;
       done();
     });
@@ -535,14 +535,14 @@ describe('nyanCat.js test suite', function() {
       expect(util.appendRainbow.calledOnce).to.be.true;
       expect(util.drawScoreboard.calledOnce).to.be.true;
       expect(util.drawRainbow.calledOnce).to.be.true;
-      expect(util.drawNyanCat.calledOnce).to.be.true;
+      expect(util.drawHapp.calledOnce).to.be.true;
       expect(util.tick).to.be.false;
 
       sut.draw();
       expect(util.appendRainbow.calledTwice).to.be.true;
       expect(util.drawScoreboard.calledTwice).to.be.true;
       expect(util.drawRainbow.calledTwice).to.be.true;
-      expect(util.drawNyanCat.calledTwice).to.be.true;
+      expect(util.drawHapp.calledTwice).to.be.true;
       expect(util.tick).to.be.true;
     });
 
@@ -552,7 +552,7 @@ describe('nyanCat.js test suite', function() {
       expect(util.appendRainbow.calledOnce).to.be.true;
       expect(util.drawScoreboard.calledOnce).to.be.false;
       expect(util.drawRainbow.calledOnce).to.be.false;
-      expect(util.drawNyanCat.calledOnce).to.be.false;
+      expect(util.drawHapp.calledOnce).to.be.false;
       expect(util.tick).to.be.false;
     })
   });
